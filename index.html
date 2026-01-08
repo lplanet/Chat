@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Leslie PLANET</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+
+        <nav class="navbar">
+            <a href="#Home" class="active">À propos de moi</a>
+            <a href="#projet">Projets</a>
+            <a href="#bilan">Bilan de l'année</a>
+            <a href="#CV">CV</a>
+        </nav>
+    </header>
+
+
+    <!-- Modal -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; border-radius:10px; max-width:600px; width:90%; position:relative;">
+        <button id="close-btn" class="modal-close-btn">×</button>
+        <h2 id="modal-title"></h2>
+        <img id="modal-img" src="" alt="" style="max-width:100%; margin: 20px 0;" />
+        <p id="modal-desc"></p>
+        </div>
+    </div>
+
+    <section class="home" id="Home">
+        <main class="home-content">
+            <h1>Portfolio de Leslie Planet</h1>
+            <h3>Étudiante en Bachelor Universitaire Technologique en Sciences des Données</h3>
+            <p class ="presentation">
+                Je m'appelle Leslie Planet, j’ai 19 ans et je suis actuellement en deuxième année 
+                de BUT des Données à Niort. Originaire de Seine-et-Marne, j’ai déménagé 
+                pour poursuivre mes études dans un domaine qui me passionne depuis longtemps.<br>
+                Depuis aussi loin que je me souvienne, l’informatique, et plus particulièrement 
+                l’univers des données, m’a toujours attirée. J’aime la logique qui s’en dégage, 
+                les défis qu’elle propose, et le fait que ce domaine soit en perpétuelle évolution. 
+                Travailler avec les données, c’est pour moi une manière de combiner rigueur, 
+                curiosité et créativité.<br>
+                En dehors des cours, je consacre du temps à la musculation, qui m’aide à 
+                garder un bon équilibre, et à la lecture, qui me permet de m’évader et de 
+                nourrir ma réflexion. Ces activités font partie de mon quotidien et contribuent 
+                à mon développement personnel.
+
+            </p>
+            <div class="btn-box">
+                <a href="#projet">Mes projets</a>
+                <a href="#CV">Mon CV</a>
+            </div>
+        </main>           
+        <aside class="home-image">
+            <img src="photoCV.jpg" alt="Photo de Leslie" />
+        </aside>
+
+    </section>
+
+    <section class="projects-section" id="projet">
+        <h1>Mes Projets</h1>
+
+        <div>
+            <label for="sort-select">Trier par :</label>
+            <select id="sort-select">
+              <option value="date">Date</option>
+              <option value="alphabetical">Alphabetique</option>
+            </select>
+          </div>
+          <div class="filter-buttons" style="margin: 20px 0;">
+            <button class="filter-btn" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="S1">Semestre 1</button>
+            <button class="filter-btn" data-filter="S2">Semestre 2</button>
+            <button class="filter-btn" data-filter="S3">Semestre 3</button>
+            <button class="filter-btn" data-filter="S4">Semestre 4</button>
+
+          </div>
+          
+
+        <div class="projects">
+            <!-- Projet 1 -->
+            <div class="project" data-semestre="S1" data-title="Projet reporting" data-date="2023-12-30" data-description="Dans le cadre de cette SAE, j’ai travaillé en binôme avec Hélène VIZOSO. L’objectif était de
+            concevoir un gestionnaire de notes dynamique, capable de recalculer automatiquement la moyenne
+            à chaque ajout ou suppression de note, et d’indiquer si l’étudiant pouvait passer en deuxième
+            année. Pour ce projet, nous avons utilisé Excel, principalement manipulé par Hélène, tandis
+            que je me suis concentrée sur la partie en VBA.
+            De mon côté, j’ai rencontré plusieurs défis techniques, notamment lors de l’ajout des notes :
+            il fallait que chaque nouvelle note s’insère automatiquement à la suite des précédentes,
+            dans un tableau récapitulatif. La gestion de la suppression a également été complexe,
+            car il fallait s’assurer que les notes restantes se réorganisent correctement après
+            le retrait de l’une d’elles. Ces problématiques m’ont permis de mieux comprendre la
+            logique derrière l’automatisation avec VBA et d’approfondir mes compétences en
+            programmation appliquée à des outils bureautiques." >
+                <h3>S1 - Projet reporting</h3>
+                <img src="SAEReporting.PNG" alt="Projet reporting" class="project-thumb"/>
+
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="project" data-semestre="S1" data-title="Projet gestion de fichier" data-date="2024-01-15" data-description="Pour cette SAE, nous avons travaillé en binôme, avec Hélène VIZOSO. L’objectif du
+            projet était de traiter un fichier CSV afin de supprimer certaines colonnes
+            inutiles, tout en conservant l’organisation et l’ordre des données. Ce travail a
+            été entièrement réalisé en Python.
+
+            La principale difficulté que j’ai rencontrée concernait justement la suppression
+            de ces colonnes : les données étaient structurées sous forme de listes imbriquées,
+            ce qui rendait leur manipulation plus délicate. Il fallait veiller à ne pas altérer
+            l’ordre des informations restantes, ce qui demandait une bonne rigueur dans le traitement
+            de chaque ligne.">
+                <h3>S1 - Projet gestion de fichier</h3>
+                <img src="SAEGestionFichier.PNG" alt="Projet gestion de fichier" class="project-thumb"/>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="project" data-semestre="S1" data-title="Projet Martinique" data-date="2024-01-30" data-description="Pour cette SAE, nous avons travaillé individuellement. L’objectif était de produire
+            un compte rendu décrivant la situation démographique d’un territoire donné ainsi
+            que les caractéristiques de son marché du travail. Pour cela, nous avons exploité
+            les données fournies par l’INSEE.
+
+            L’analyse a révélé une baisse marquée de la population, un taux de chômage
+            particulièrement élevé, ainsi qu’une proportion importante de fonctionnaires.
+            L’ensemble de cette étude a été appuyé par des graphiques réalisés avec Excel,
+            permettant de visualiser clairement les tendances et les indicateurs clés.">
+                <h3>S1 - Projet Martinique</h3>
+                <img src="SAEMartinique.PNG" alt="Projet Martinique" class="project-thumb"/>
+            </div>
+
+            <!-- Projet 4 -->
+            <div class="project" data-semestre="S1" data-title="Projet Islande" data-date="2024-02-15" data-description="Pour ce projet, nous avons travaillé en groupe de trois, avec Chloé DESCOUT et
+            Xavier BARBEAU. L’objectif de cette SAE était de réaliser une présentation bilingue :
+            en anglais, nous devions présenter un territoire sous son angle économique, tandis
+            qu’en français, nous devions en explorer la dimension culturelle. Nous avons choisi
+            de nous concentrer sur l’Islande.
+        
+            Ce travail m’a permis de renforcer mes compétences en anglais, tant à l’écrit qu’à
+            l’oral, et de mettre en pratique mes connaissances en communication. J’ai également
+            contribué à la conception d’un PowerPoint clair et structuré, adapté aux deux parties
+            de la présentation.">
+                <h3>S1 - Projet Islande</h3>
+                <img src="SAEIslande.PNG" alt="Projet Islande" class="project-thumb"/>
+            </div>
+                
+            <!-- Projet BDR -->
+            <div class="project" data-semestre="S2" data-title="Projet BDR" data-date="2024-02-30" data-description=" Pour cette SAE, nous avons travaillé en groupe de trois, avec Hélène VIZOSO et Rémi
+            PIERRON. L’objectif était de concevoir une base de données, puis de l’alimenter à
+            partir de fichiers CSV. En complément, nous devions développer une interface avec
+            Tkinter permettant à la fois de visualiser les différentes tables et d’ajouter de
+            nouveaux champs. Nous avons également mis en place plusieurs requêtes pour interroger
+            efficacement la base.
+        
+            L’un des principaux défis de ce projet a été le remplissage de certaines tables,
+            notamment celles qui nécessitaient de croiser plusieurs fichiers CSV. La gestion
+            des clés étrangères s’est révélée particulièrement délicate, car elle exigeait une
+            cohérence stricte entre les données issues de sources différentes."">
+                <h3>S2 - Projet BDR</h3>
+                <img src="SAEBDR.PNG" alt="Projet BDR" class="project-thumb" />
+            </div>
+
+            <!-- Projet Échantillonnage -->
+            <div class="project" data-semestre="S2" data-title="Projet Échantillonnage" data-date="2024-03-15" data-description="Pour cette SAE, nous avons travaillé en binôme avec Romain Vivier. L’objectif principal
+            était d’estimer la population de la région Île-de-France à partir de deux méthodes
+            d’échantillonnage : un échantillon aléatoire simple, puis un échantillon aléatoire
+            stratifié. L’ensemble de l’analyse a été réalisé avec le logiciel R.
+        
+            Dans un second temps, à partir d’une autre base de données nommée 'voiture',
+            nous avons appliqué un test d’indépendance du khi-deux, afin d’évaluer s’il
+            existait une relation significative entre deux variables." >
+                <h3>S2 - Projet Échantillonnage</h3>
+                <img src="SAEEchantillonage.PNG" alt="Projet Échantillonnage" class="project-thumb"/>
+            </div>
+
+            <!-- Projet Régression -->
+            <div class="project" data-semestre="S2" data-title="Projet Régression" data-date="2024-03-30" data-description="Pour cette SAE, j’ai travaillé en binôme avec Maximilien Mariot. L’objectif
+            était de prédire le prix des logements parisiens en utilisant le logiciel R
+            et en testant différents types de modèles statistiques, tels que des modèles
+            linéaires ou exponentiels.
+
+            La principale difficulté a été de déterminer quel modèle était le plus adapté
+            aux données disponibles. Cela nous a amenés à réfléchir à plusieurs questions
+            essentielles : sur quelles variables baser la prédiction, fallait-il distinguer
+            les maisons des appartements, ou encore comment segmenter les données de manière
+            pertinente. Pour affiner nos hypothèses et guider notre choix de modèles, nous
+            nous sommes appuyés sur des analyses exploratoires réalisées avec Excel.">
+                <h3>S2 - Projet Régression</h3>
+                <img src="SAEBureau.PNG" alt="Projet Régression" class="project-thumb" />
+
+            </div>
+
+            <!-- Projet DataVisualisation -->
+            <div class="project" data-semestre="S2" data-title="Projet DataVisualisation" data-date="2024-06-01"data-description="Cette SAE, d’une durée exceptionnelle d’une seule journée, s’est déroulée
+            en groupe de cinq, avec Hélène VIZOSO, Chloé DECOUST, Xavier BARBEAU et
+            Rémi PIERRON. Il s’agissait d’une SAE nationale à laquelle ont participé
+            tous les BUT SD de France. Le sujet, fourni le matin même, consistait à
+            produire une visualisation de données pour Météo France à partir d’un
+            important jeu de données climatiques.
+
+            Ce travail intense nous a permis de mettre en pratique de nombreuses
+            compétences, notamment le travail en équipe, la gestion du temps, la
+            rapidité d’analyse, ainsi que la maîtrise de divers outils de visualisation.">
+                <h3>S2 - Projet DataVisualisation</h3>
+                <img src="SAEDataViz.PNG" alt="Projet DataVisualisation" class="project-thumb"/>
+            </div>
+
+
+            <!-- S4-Projet Reporting d’une analyse multivariée -->
+            <div class="project" data-semestre="S3" data-title="Projet Reporting d’une analyse multivariée"  data-date="2024-10-01"data-description="L’objectif de cette SAE 
+            était de concevoir un outil visuel et automatisé pour le suivi et l’évaluation de la pauvreté en France. Cet outil devait faciliter 
+            la prise de décisions à l’échelle départementale et régionale. 
+
+            En effet, en 2021, 9,1 millions de personnes vivaient sous le seuil de pauvreté en France métropolitaine, soit environ 14 % de la 
+            population. Pour contribuer à la réduction de ce taux, il est essentiel de fournir des données variées : nombre de personnes 
+            concernées, tranches d’âge, niveau d’éducation, part des locataires en HLM, ou encore effectifs de police et de gendarmerie. 
+            
+            Pour mener à bien cette étude, nous avons exploité les données de l’INSEE et développé une application à l’aide du langage R. ">
+                <h3>S3 - Projet Reporting d’une analyse multivariée </h3>
+                <img src="SAEReporting.PNG" alt="Projet DataVisualisation" class="project-thumb"/>
+            </div>    
+            
+            <!-- S4-Projet Besoin du territoire -->
+            <div class="project" data-semestre="S3 S4" data-title="Projet Besoin du territoire"  data-date="2024-12-01"data-description="Cette SAE s’est déroulée 
+            au fil de l’eau, c’est-à-dire sur l’ensemble de l’année, contrairement à d’autres projets plus courts réalisés sur une semaine 
+            ou quelques jours. Pour ma part, j’étais dans un groupe de trois personnes, et notre mission consistait à dispenser des cours 
+            de NSI à deux classes de première du lycée Paul Guérin. 
+
+            Les cours portaient sur la programmation web, avec l’apprentissage de l’HTML et du format CSV. Nous avons également abordé la 
+            notion de formulaire. 
+                
+            Nous avons animé deux séances de deux heures au lycée, chacune avec une classe différente. Une session supplémentaire a eu lieu 
+            à l’IUT, cette fois avec les deux classes réunies. 
+                
+            Chaque cours suivait le même déroulé : environ 15 à 20 minutes de théorie, suivies d’exercices pratiques sur ordinateur, que 
+            nous avions conçus nous-mêmes. ">
+                <h3>S3/S4 - Besoin du territoire</h3>
+                <img src="SAEBesoinTerritoire.png" alt="Projet DataVisualisation" class="project-thumb"/>
+            </div>
+
+            <!-- S4-Projet Développement d’un composant d’une solution décisionnel -->
+            <div class="project" data-semestre="S4" data-title="Projet Développement d’un composant d’une solution décisionnel"  data-date="2025-02-01"data-description="Dans le cadre de ce projet, 
+            nous avons travaillé sur l’amélioration de l’accès aux informations médicales issues de la Classification Commune des Actes Médicaux 
+            (CCAM), utilisée par les professionnels de santé en France. L’objectif principal était de simplifier l’exploitation de cette base de 
+            données complexe en développant une API REST avec NodeJS. 
+
+            Cette API permet une consultation simple, rapide et à grande échelle des données CCAM via des endpoints bien définis. Les résultats 
+            sont retournés au format JSON, assurant une compatibilité optimale avec différents systèmes et applications. Pour le stockage des 
+            données, nous avons opté pour une base MySQL, garantissant fiabilité et performance. 
+            
+            Ce projet vise à offrir aux professionnels de santé un outil moderne pour accéder efficacement aux informations médicales dont 
+            ils ont besoin dans leur pratique quotidienne. 
+             ">
+                <h3>S4 - Projet Développement d’un composant d’une solution décisionnel</h3>
+                <img src="SAEMesmoudi2.png" alt="Projet DataVisualisation" class="project-thumb"/>
+           </div>
+            
+             <!-- S4-Projet Intégration de données dans un datawarehouse  -->
+            <div class="project" data-semestre="S3" data-title="Projet Développement d’un composant d’une solution décisionnel"  data-date="2024-12-15"data-description="Ce projet consiste 
+             à concevoir un entrepôt de données pour l’entreprise fictive SportOne, spécialisée dans la vente au détail d’articles de sport et de plein air, présente à 
+             l’international avec des magasins physiques et un site e-commerce. 
+
+             L’objectif est de centraliser et structurer les données issues des ventes (entre 2017 et 2022), du catalogue produit, des clients, des fournisseurs et 
+             d’informations géographiques. L’entrepôt de données est modélisé selon plusieurs axes d’analyse : géographie, temps, produit, client et employé. 
+             
+             À partir de cet entrepôt, nous avons conçu une dizaine de tableaux de bord interactifs permettant de visualiser l’évolution des ventes et les performances 
+             de l’entreprise. Ces visualisations offrent des indicateurs clés pour le pilotage stratégique et opérationnel, en mettant en évidence les tendances par région, 
+             période, catégorie de produit, ou encore par canal de vente (magasin vs e-commerce). 
+              ">
+                 <h3>S3 - Projet Intégration de données dans un datawarehouse </h3>
+                 <img src="SAENoel.png" alt="Projet DataVisualisation" class="project-thumb"/>
+            </div>                       
+
+             <!-- S4-Projet Collecte de données web -->
+            <div class="project" data-semestre="S3" data-title="Projet Collecte de données web"  data-date="2024-11-20"data-description="Dans ce projet, nous avons développé une application 
+             Python combinant deux approches : le web scraping et l’exploitation d’une API publique, dans un contexte orienté données géographiques. Pour la partie scraping, 
+             nous avons choisi de travailler sur la liste des musées de France disponible sur Wikipedia. L’objectif était de récupérer des données géographiques et descriptives 
+             sur les musées (nom, localisation, type, ville) afin de les structurer dans un DataFrame exploitable. Une fois les données extraites avec BeautifulSoup, nous les 
+             avons nettoyées et organisées pour supprimer les doublons et filtrer les valeurs incomplètes. Ces données ont ensuite été visualisées à l’aide de la bibliothèque 
+             Folium, via une carte interactive permettant de localiser les musées sur le territoire français. Un graphique complémentaire a été généré pour analyser la répartition 
+             des musées selon les régions ou les types d’établissement. 
+
+             En parallèle, nous avons exploré l’utilisation de l’API de l’ADEME, qui fournit des diagnostics de performance énergétique (DPE) pour les logements en France. Nous 
+             avons utilisé l’API pour interroger les données DPE d’une commune spécifique (ex. : Fors, code INSEE 79125) et les charger dans un DataFrame. L'application permet à 
+             l'utilisateur de saisir un nom de commune ou un code INSEE, ce qui déclenche l'affichage automatique d'une carte Folium où les logements sont représentés par des 
+             marqueurs colorés selon leur classe énergétique. Un graphique de comparaison a été réalisé pour visualiser la répartition des logements par lettre de DPE dans les 
+             quatre principales villes de l’ancienne région Poitou-Charentes : La Rochelle, Niort, Poitiers et Angoulême. Un indicateur complémentaire a également été intégré 
+             afin de mettre en lumière la proportion de logements énergivores (classés F et G) par ville. Le projet inclut enfin une interface web simple, permettant de naviguer 
+             entre les différentes fonctionnalités de manière intuitive. 
+                          
+               ">
+                 <h3>S3 - Projet Collecte de données web </h3>
+                 <img src="SAEGestionDonneWeb.jpg" alt="Projet DataVisualisation" class="project-thumb"/>
+            </div>           
+
+            <div class="project" data-semestre="S4" data-title="Stage"  data-date="2025-04-13"data-description="Dans le cadre de ma deuxième année de
+             BUT Sciences des Données, j’ai eu l’opportunité d’effectuer un stage de dix semaines au sein d’Inter Mutuelles Assistance (IMA), 
+             une entreprise majeure dans le domaine de l’assistance, en France comme à l’international. Intégrée au service Analyses et Pilotage, 
+             j’ai pu découvrir de l’intérieur le fonctionnement d’un grand groupe tout en participant activement à des missions techniques variées. 
+             Mon rôle consistait principalement à contribuer à l’amélioration de la qualité, de la lisibilité et de l’exploitation des données internes. 
+             J’ai notamment été chargée de mettre à jour régulièrement des bases de données à échéances mensuelles et trimestrielles, un travail essentiel 
+             pour garantir la fiabilité des informations transmises aux différents services. Une autre partie importante de mon stage a porté sur la 
+             réalisation de cartographies. Ces cartes permettaient de visualiser des répartitions géographiques précises, comme l’implantation de
+              prestataires, et facilitaient l’aide à la décision pour des services tels que la GOP ou la CGA. Pour optimiser certaines tâches répétitives, 
+              j’ai également développé des macros en VBA, notamment pour automatiser des traitements sur Excel. En parallèle, j’ai participé à des projets 
+              plus ciblés, comme l’intégration de prospects dans l’outil PRAXEDO, ou encore une analyse approfondie des grandes agglomérations afin de mieux
+               comprendre la répartition des interventions. Cette expérience m’a permis de mettre en pratique les compétences acquises en cours, tout en 
+               développant mon autonomie, ma rigueur et ma capacité à communiquer efficacement dans un environnement professionnel. Elle a aussi confirmé 
+               mon attrait pour le domaine de la data et m’a donné envie de poursuivre dans cette voie.
+              ">
+                <h3>S4 - Stage </h3>
+                <img src="Stage.png" alt="Projet DataVisualisation" class="project-thumb"/>
+           </div> 
+
+        </div>
+    </section>
+
+    <section class="bilan" id="bilan" class="project-thumb">
+        <h1>Bilan de l'année</h1>
+        <p>
+            Cette deuxième année de BUT Data Science a été particulièrement enrichissante, tant sur le plan personnel 
+            que professionnel. L’un des moments les plus marquants a été mon stage de 10 semaines au sein du service 
+            Analyses et Pilotage de l’entreprise IMA. Il s’agissait de ma première véritable immersion dans le monde 
+            professionnel, une expérience qui m’a permis de mettre en pratique les connaissances théoriques acquises 
+            en cours, tout en développant de nouvelles compétences. <br><br>
+            Durant ce stage, j’ai notamment appris à mieux communiquer au sein d’une équipe, à m’adapter à un environnement 
+            de travail structuré, et à mieux comprendre les enjeux réels d’un projet d’analyse de données. Cette expérience 
+            m’a beaucoup apporté : elle m’a aidé à gagner en confiance, à développer mon autonomie et à affiner mes ambitions 
+            professionnelles.<br><br>
+            Ce stage m’a également permis de réfléchir plus concrètement à mon avenir. Il a renforcé mon envie de 
+            poursuivre dans le domaine de la data, et m’a conforté dans mon choix d’orientation. Cette deuxième
+             année a donc été décisive dans mon parcours : elle a confirmé mon intérêt pour ce secteur, tout en 
+             me donnant les clés pour mieux m’y projeter.
+            
+        </p>
+    </section>
+
+    <section class="CV" id="CV">
+        <h1>Mon CV</h1>
+        <div class="CV-affichage">
+            <iframe src="cv4-LesliePlanet.pdf" class="pdf-frame" title="CV Leslie Planet"></iframe>
+        </div>
+    </section>
+
+
+
+</script>
+
+</body>
+
+</html>
