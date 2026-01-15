@@ -19,6 +19,24 @@ upstash_index = Index(
     token=os.getenv("UPSTASH_VECTOR_REST_TOKEN")
 )
 
+# Mapping des outils/logiciels par projet
+PROJET_OUTILS = {
+    "s1_reporting": ["VBA", "Excel"],
+    "s1_gestion_fichier": ["Python"],
+    "s1_martinique": ["Excel"],
+    "s1_islande": ["PowerPoint"],
+    "s2_bdr": ["Python", "Tkinter", "MySQL"],
+    "s2_echantillonnage": ["R"],
+    "s2_regression": ["R"],
+    "s2_datavisualisation": ["PowerBI"],
+    "s3_reporting_multivariee": ["R"],
+    "s3_s4_besoin_territoire": ["HTML", "CSS", "PowerPoint"],
+    "s4_solution_decisionnelle_ccam": ["Python", "MySQL"],
+    "s3_datawarehouse": ["PowerBI"],
+    "s3_collecte_web": ["Python"],
+    "stage": ["Excel", "VBA", "Articque"]
+}
+
 
 def read_markdown_file(file_path: Path) -> tuple[str, dict]:
     """
@@ -51,6 +69,17 @@ def read_markdown_file(file_path: Path) -> tuple[str, dict]:
         if filename.startswith("s"):
             semestre = filename.split("_")[0].upper()
             metadata["semestre"] = semestre
+        
+        # Ajouter les outils/logiciels si disponibles
+        if filename in PROJET_OUTILS:
+            metadata["outils"] = ", ".join(PROJET_OUTILS[filename])
+            metadata["outils_list"] = PROJET_OUTILS[filename]
+    
+    # Ajouter les outils pour le stage
+    if "stage" in str(relative_path):
+        if "stage" in PROJET_OUTILS:
+            metadata["outils"] = ", ".join(PROJET_OUTILS["stage"])
+            metadata["outils_list"] = PROJET_OUTILS["stage"]
     
     return content, metadata
 
@@ -81,6 +110,7 @@ def index_document(doc_id: str, content: str, metadata: dict):
 def index_all_documents():
     """
     Parcourt tous les fichiers Markdown dans le dossier data/ et les indexe.
+    Exclut les fichiers projets_sX.md car ils sont des doublons des fichiers dans projets/
     """
     data_dir = Path("data")
     
@@ -89,9 +119,15 @@ def index_all_documents():
         return
     
     # Trouver tous les fichiers .md
-    md_files = list(data_dir.rglob("*.md"))
+    all_md_files = list(data_dir.rglob("*.md"))
     
-    print(f"📄 {len(md_files)} fichiers Markdown trouvés")
+    # Filtrer pour exclure les fichiers projets_sX.md (doublons)
+    md_files = [
+        f for f in all_md_files 
+        if not (f.parent == data_dir and f.stem.startswith("projets_s"))
+    ]
+    
+    print(f"📄 {len(md_files)} fichiers Markdown trouvés (exclusion des doublons projets_sX.md)")
     print("=" * 60)
     
     indexed_count = 0

@@ -12,6 +12,19 @@
 
 Je m'appelle Leslie Planet, j'ai 20 ans et je suis actuellement en deuxième année de BUT des Données à Niort. Originaire de Seine-et-Marne, j'ai déménagé pour poursuivre mes études dans un domaine qui me passionne depuis longtemps.
 
+## Domaines d'études
+
+Dans le cadre de ma formation en BUT des Données, j'étudie principalement :
+
+- **Mathématiques** : algèbre, analyse, probabilités
+- **Statistiques** : statistiques descriptives et inférentielles, tests statistiques, modélisation
+- **Informatique** : programmation (Python, R, SQL), bases de données, développement web
+- **Science des données** : analyse de données, visualisation, machine learning, Big Data
+- **Outils décisionnels** : Business Intelligence, tableaux de bord, Power BI
+- **Gestion de projets** : méthodologies agiles, travail en équipe, communication
+
+Ces disciplines me permettent de développer une vision globale de la data science, alliant rigueur mathématique, compétences techniques et capacité d'analyse.
+
 ## Passion pour l'informatique et les données
 
 Depuis aussi loin que je me souvienne, l'informatique, et plus particulièrement l'univers des données, m'a toujours attirée. J'aime la logique qui s'en dégage, les défis qu'elle propose, et le fait que ce domaine soit en perpétuelle évolution. Travailler avec les données, c'est pour moi une manière de combiner rigueur, curiosité et créativité.
