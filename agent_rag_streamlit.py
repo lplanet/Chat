@@ -22,125 +22,13 @@ st.set_page_config(
     layout="wide"
 )
 
-# Appliquer le style du portfolio
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-    
-    /* Style global */
-    * {
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    /* Arrière-plan et couleurs principales */
-    .stApp {
-        background: #F8F5CD;
-    }
-    
-    /* Titres */
-    h1, h2, h3 {
-        color: #ce52a9 !important;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    /* Messages de chat */
-    .stChatMessage {
-        background-color: #ffe6f8 !important;
-        border-radius: 8px;
-        padding: 15px;
-        margin: 10px 0;
-    }
-    
-    /* Zone de saisie */
-    .stChatInputContainer {
-        background-color: #ffe6f8;
-        border-radius: 8px;
-    }
-    
-    /* Boutons */
-    .stButton > button {
-        background: #00abf0;
-        color: #F8F5CD;
-        border: 2px solid #00abf0;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    .stButton > button:hover {
-        background: #F8F5CD;
-        color: #00abf0;
-        border: 2px solid #00abf0;
-    }
-    
-    /* Sidebar */
-    [data-testid="stSidebar"] {
-        background-color: #ffe6f8;
-    }
-    
-    [data-testid="stSidebar"] h1, 
-    [data-testid="stSidebar"] h2, 
-    [data-testid="stSidebar"] h3 {
-        color: #ce52a9 !important;
-    }
-    
-    [data-testid="stSidebar"] p {
-        color: #0B1b29;
-    }
-    
-    /* Métriques */
-    [data-testid="stMetricValue"] {
-        color: #ce52a9;
-    }
-    
-    /* Expander */
-    .streamlit-expanderHeader {
-        background-color: #ffe6f8;
-        color: #ce52a9;
-        border-radius: 8px;
-    }
-    
-    /* Spinner */
-    .stSpinner > div {
-        border-top-color: #00abf0 !important;
-    }
-    
-    /* Input text */
-    .stTextInput > div > div > input {
-        background-color: white;
-        color: #0B1b29;
-        border: 2px solid #00abf0;
-        border-radius: 8px;
-    }
-    
-    /* Messages texte */
-    p, li {
-        color: #0B1b29;
-    }
-    
-    /* Liens */
-    a {
-        color: #00abf0;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    
-    a:hover {
-        color: #ce52a9;
-    }
-    
-    /* Markdown en général */
-    .stMarkdown {
-        color: #0B1b29;
-    }
-    
-    /* Colonnes */
-    [data-testid="column"] {
-        background: transparent;
-    }
-</style>
-""", unsafe_allow_html=True)
+# Charger le style depuis le fichier CSS
+def load_css():
+    css_file = os.path.join(os.path.dirname(__file__), "assets", "style.css")
+    with open(css_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css()
 
 # Initialiser Upstash Vector
 @st.cache_resource
@@ -528,7 +416,7 @@ with st.sidebar:
             st.markdown("**Conversations précédentes :**")
             for conv in conversations[:10]:  # Limiter à 10 dernières conversations
                 timestamp = datetime.fromisoformat(conv["timestamp"]).strftime("%d/%m %H:%M")
-                col1, col2 = st.columns([3, 1])
+                col1, col2 = st.columns([4, 1])
                 with col1:
                     if st.button(f"📝 {timestamp} ({conv['message_count']} msgs)", key=f"load_{conv['session_id']}", use_container_width=True):
                         # Charger la conversation
@@ -538,7 +426,7 @@ with st.sidebar:
                             st.session_state.session_id = conv['session_id']
                             st.rerun()
                 with col2:
-                    if st.button("🗑️", key=f"del_{conv['session_id']}"):
+                    if st.button("🗑️", key=f"del_{conv['session_id']}", use_container_width=True):
                         delete_conversation_from_redis(conv['session_id'])
                         st.rerun()
         else:
