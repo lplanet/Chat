@@ -44,8 +44,12 @@ def reset_index():
 
 
 if __name__ == "__main__":
-    confirmation = input("⚠️  Êtes-vous sûr de vouloir supprimer tous les documents indexés? (oui/non): ")
-    if confirmation.lower() in ["oui", "yes", "o", "y"]:
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "--force":
         reset_index()
     else:
-        print("❌ Opération annulée")
+        confirmation = input("⚠️  Êtes-vous sûr de vouloir supprimer tous les documents indexés? (oui/non): ")
+        if confirmation.lower() in ["oui", "yes", "o", "y"]:
+            reset_index()
+        else:
+            print("❌ Opération annulée")
