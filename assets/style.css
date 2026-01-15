@@ -50,12 +50,12 @@ h1, h2, h3 {
 /* Sidebar */
 [data-testid="stSidebar"] {
     background-color: #ffe6f8;
-    min-width: 400px !important;
-    width: 400px !important;
+    min-width: 200px !important;
+    width: 200px !important;
 }
 
 [data-testid="stSidebar"] > div:first-child {
-    width: 400px !important;
+    width: 200px !important;
 }
 
 [data-testid="stSidebar"] h1, 
