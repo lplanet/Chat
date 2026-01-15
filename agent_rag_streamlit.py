@@ -69,62 +69,8 @@ def save_conversation_to_redis(session_id: str, messages: list):
         except Exception as e:
             st.warning(f"Impossible de sauvegarder dans Redis: {e}")
 
-def load_conversation_from_redis(session_id: str) -> list:
-    """Charge une conversation depuis Redis"""
-    if redis_client:
-        try:
-            data = redis_client.get(f"conversation:{session_id}")
-            if data:
-                conversation_data = json.loads(data)
-                return conversation_data.get("messages", [])
-        except Exception as e:
-            st.warning(f"Impossible de charger depuis Redis: {e}")
-    return []
 
-def list_conversations_from_redis() -> list:
-    """Liste toutes les conversations sauvegardées"""
-    if redis_client:
-        try:
-            # Utiliser scan au lieu de keys pour éviter les problèmes de permissions
-            conversations = []
-            cursor = 0
-            
-            while True:
-                cursor, keys = redis_client.scan(cursor, match="conversation:*", count=100)
-                
-                for key in keys:
-                    try:
-                        data = redis_client.get(key)
-                        if data:
-                            conv_data = json.loads(data)
-                            session_id = conv_data.get("session_id", key.split(":")[1] if ":" in key else key)
-                            timestamp = conv_data.get("timestamp", "")
-                            message_count = len(conv_data.get("messages", []))
-                            conversations.append({
-                                "session_id": session_id,
-                                "timestamp": timestamp,
-                                "message_count": message_count
-                            })
-                    except:
-                        continue
-                
-                if cursor == 0:
-                    break
-            
-            # Trier par timestamp décroissant
-            conversations.sort(key=lambda x: x["timestamp"], reverse=True)
-            return conversations
-        except Exception as e:
-            st.warning(f"Impossible de lister les conversations: {e}")
-    return []
 
-def delete_conversation_from_redis(session_id: str):
-    """Supprime une conversation de Redis"""
-    if redis_client:
-        try:
-            redis_client.delete(f"conversation:{session_id}")
-        except Exception as e:
-            st.warning(f"Impossible de supprimer: {e}")
 
 
 @function_tool
@@ -404,56 +350,15 @@ st.markdown("---")
 
 # Sidebar - Historique des conversations
 with st.sidebar:
-    st.header("💬 Historique des conversations")
-    
-    if redis_client:
-        st.markdown("*Sauvegarde activée avec Redis*")
-        
-        # Liste des conversations
-        conversations = list_conversations_from_redis()
-        
-        if conversations:
-            st.markdown("**Conversations précédentes :**")
-            for conv in conversations[:10]:  # Limiter à 10 dernières conversations
-                timestamp = datetime.fromisoformat(conv["timestamp"]).strftime("%d/%m %H:%M")
-                col1, col2 = st.columns([4, 1])
-                with col1:
-                    if st.button(f"📝 {timestamp} ({conv['message_count']} msgs)", key=f"load_{conv['session_id']}", use_container_width=True):
-                        # Charger la conversation
-                        loaded_messages = load_conversation_from_redis(conv['session_id'])
-                        if loaded_messages:
-                            st.session_state.messages = loaded_messages
-                            st.session_state.session_id = conv['session_id']
-                            st.rerun()
-                with col2:
-                    if st.button("🗑️", key=f"del_{conv['session_id']}", use_container_width=True):
-                        delete_conversation_from_redis(conv['session_id'])
-                        st.rerun()
-        else:
-            st.info("Aucun historique disponible")
-        
-        st.markdown("---")
-        
+       
         # Bouton nouvelle conversation
-        if st.button("➕ Nouvelle conversation", use_container_width=True):
-            st.session_state.messages = []
-            st.session_state.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-            st.session_state.hide_suggestions = False
-            st.rerun()
-        
-        # Bouton sauvegarder
-        if st.session_state.messages and st.button("💾 Sauvegarder", use_container_width=True):
-            save_conversation_to_redis(st.session_state.session_id, st.session_state.messages)
-            st.success("✅ Conversation sauvegardée !")
-    else:
-        st.warning("⚠️ Redis non configuré")
-        st.markdown("""
-        Pour activer l'historique, configurez :
-        - `UPSTASH_REDIS_REST_URL`
-        - `UPSTASH_REDIS_REST_TOKEN`
-        
-        dans votre fichier `.env`
-        """)
+    if st.button("➕ Nouvelle conversation", use_container_width=True):
+        st.session_state.messages = []
+        st.session_state.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+        st.session_state.hide_suggestions = False
+        st.rerun()
+
+
     
     st.markdown("---")
     
