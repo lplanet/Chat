@@ -40,18 +40,13 @@ def init_upstash():
 
 upstash_index = init_upstash()
 
-# Initialiser Upstash Redis (optionnel pour l'historique)
+# Initialiser Upstash Redis pour l'historique
 @st.cache_resource
 def init_redis():
-    redis_url = os.getenv("UPSTASH_REDIS_REST_URL")
-    redis_token = os.getenv("UPSTASH_REDIS_REST_TOKEN")
-    
-    if redis_url and redis_token:
-        try:
-            return Redis(url=redis_url, token=redis_token)
-        except:
-            return None
-    return None
+    return Redis(
+        url = os.getenv("UPSTASH_REDIS_REST_URL"),
+        token = os.getenv("UPSTASH_REDIS_REST_TOKEN")
+    )
 
 redis_client = init_redis()
 
@@ -71,16 +66,14 @@ def save_conversation_to_redis(session_id: str, messages: list):
 
 
 
-
-
 @function_tool
-def search_portfolio(query: str, top_k: int = 5) -> str:
+def search_portfolio(query: str, top_k: int = 10) -> str:
     """
     Recherche des informations dans le portfolio de Leslie Planet.
     
     Args:
         query: La question ou le sujet à rechercher
-        top_k: Nombre de documents à retourner (par défaut 5)
+        top_k: Nombre de documents à retourner (10 par defaut)
         
     Returns:
         Documents pertinents formatés
