@@ -121,18 +121,14 @@ def index_all_documents():
     # Trouver tous les fichiers .md
     all_md_files = list(data_dir.rglob("*.md"))
     
-    # Filtrer pour exclure les fichiers projets_sX.md (doublons)
-    md_files = [
-        f for f in all_md_files 
-        if not (f.parent == data_dir and f.stem.startswith("projets_s"))
-    ]
+
     
-    print(f"📄 {len(md_files)} fichiers Markdown trouvés (exclusion des doublons projets_sX.md)")
+    print(f"📄 {len(all_md_files)} fichiers Markdown trouvés (exclusion des doublons projets_sX.md)")
     print("=" * 60)
     
     indexed_count = 0
     
-    for md_file in md_files:
+    for md_file in all_md_files:
         try:
             # Lire le contenu et les métadonnées
             content, metadata = read_markdown_file(md_file)
@@ -152,7 +148,7 @@ def index_all_documents():
             print("-" * 60)
     
     print("=" * 60)
-    print(f"✨ Indexation terminée: {indexed_count}/{len(md_files)} documents indexés")
+    print(f"✨ Indexation terminée: {indexed_count}/{len(all_md_files)} documents indexés")
     
     # Afficher les statistiques de l'index
     try:
